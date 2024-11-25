@@ -30,6 +30,7 @@ resource "proxmox_vm_qemu" "instance" {
   memory                 = var.vm_config_map.memory
   onboot                 = var.vm_config_map.onboot
   scsihw                 = var.vm_config_map.scsihw
+  balloon                = var.vm_config_map.balloon
 
   sshkeys = var.sshkeys
   tags    = null

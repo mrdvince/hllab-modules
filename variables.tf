@@ -18,6 +18,14 @@ variable "ipconfig0" {
   type = string
 }
 
+variable "vmid" {
+  type    = number
+  default = 0
+}
+
+variable "tags" {
+  default = null
+}
 
 variable "vm_base_config_map" {
   type = map(any)

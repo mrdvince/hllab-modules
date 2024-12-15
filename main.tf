@@ -33,8 +33,8 @@ resource "proxmox_vm_qemu" "instance" {
   balloon                = var.vm_config_map.balloon
 
   sshkeys = var.sshkeys
-  tags    = null
-  vmid    = null
+  tags    = var.tags
+  vmid    = var.vmid
 
   dynamic "disks" {
     for_each = [var.disks]

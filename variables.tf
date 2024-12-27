@@ -1,35 +1,43 @@
 variable "vmname" {
-  type = string
+  description = "Name of the VM"
+  type        = string
 }
 
 variable "template_name" {
-  type = string
+  description = "Name of the template"
+  type        = string
 }
 
 variable "os_type" {
-  type = string
+  description = "Type of the OS"
+  type        = string
 }
 
 variable "target_node" {
-  type = string
+  description = "Node to deploy the VM to"
+  type        = string
 }
 
 variable "ipconfig0" {
-  type = string
+  description = "IP configuration for the VM"
+  type        = string
 }
 
 variable "vmid" {
-  type    = number
-  default = 0
+  description = "VM ID"
+  type        = number
+  default     = 0
 }
 
 variable "tags" {
-  default = null
+  description = "Tags for the VM"
+  default     = null
 }
 
 variable "vm_base_config_map" {
-  type = map(any)
-  default = {}
+  description = "Base VM configuration options"
+  type        = map(any)
+  default     = {}
 }
 
 variable "vm_config_map" {
@@ -39,24 +47,32 @@ variable "vm_config_map" {
 }
 
 variable "sshkeys" {
-  default = null
+  description = "SSH keys used in the VM"
+  default     = null
 }
 variable "cipassword" {
+  description = "Password for the VM"
+  type        = string
+  default     = null
 }
 
 variable "disks" {
-  type = map(any)
+  description = "VM Disk"
+  type        = map(any)
 }
 
 variable "network" {
-  type = map(any)
+  description = "VM Network configuration"
+  type        = map(any)
 }
 
 variable "serial" {
-  type = map(any)
+  description = "VM Serial configuration"
+  type        = map(any)
 }
 
 variable "efidisk" {
-  type    = map(any)
-  default = null
+  description = "EFI Disk config"
+  type        = map(any)
+  default     = null
 }

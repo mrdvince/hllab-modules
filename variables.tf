@@ -29,21 +29,7 @@ variable "tags" {
 
 variable "vm_base_config_map" {
   type = map(any)
-  default = {
-    additional_wait      = 15
-    automatic_reboot     = true
-    sockets              = 1
-    tags                 = null
-    vcpus                = null
-    vmid                 = null
-    clone_wait           = 30
-    default_ipv4_address = null
-    default_ipv6_address = null
-    qemu_os              = "l26"
-    skip_ipv4            = null
-    skip_ipv6            = null
-    cpu                  = "host"
-  }
+  default = {}
 }
 
 variable "vm_config_map" {

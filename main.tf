@@ -9,16 +9,16 @@ resource "proxmox_vm_qemu" "instance" {
   cipassword  = var.cipassword
 
   # base config
-  additional_wait  = var.vm_base_config_map.additional_wait
-  automatic_reboot = var.vm_base_config_map.automatic_reboot
-  clone_wait       = var.vm_base_config_map.clone_wait
-  cpu              = var.vm_base_config_map.cpu
+  additional_wait  = lookup(var.vm_base_config_map, "additional_wait", 15)
+  automatic_reboot = lookup(var.vm_base_config_map, "automatic_reboot", true)
+  clone_wait       = lookup(var.vm_base_config_map, "clone_wait", 30)
+  cpu              = lookup(var.vm_base_config_map, "cpu", "host")
   agent            = 1
-  qemu_os          = var.vm_base_config_map.qemu_os
-  skip_ipv4        = var.vm_base_config_map.skip_ipv4
-  skip_ipv6        = var.vm_base_config_map.skip_ipv6
-  sockets          = var.vm_base_config_map.sockets
-  vcpus            = var.vm_base_config_map.vcpus
+  qemu_os          = lookup(var.vm_base_config_map, "qemu_os", "l26")
+  skip_ipv4        = lookup(var.vm_base_config_map, "skip_ipv4", null)
+  skip_ipv6        = lookup(var.vm_base_config_map, "skip_ipv6", null)
+  sockets          = lookup(var.vm_base_config_map, "sockets", 1)
+  vcpus            = lookup(var.vm_base_config_map, "vcpus", null)
   #  worthy configurable parameters
   bios                   = var.vm_config_map.bios
   boot                   = var.vm_config_map.boot

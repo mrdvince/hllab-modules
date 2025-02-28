@@ -1,10 +1,14 @@
 resource "proxmox_vm_qemu" "instance" {
-  name        = var.vmname
+  for_each = {
+    for instance in var.instances : instance.vmname => instance
+  }
+
+  name        = each.key
   os_type     = var.os_type
   full_clone  = true
   clone       = var.template_name
   target_node = var.target_node
-  ipconfig0   = var.ipconfig0
+  ipconfig0   = each.value.ipconfig
   ciuser      = var.vm_config_map.ciuser
   cipassword  = var.cipassword
 
@@ -34,7 +38,7 @@ resource "proxmox_vm_qemu" "instance" {
 
   sshkeys = var.sshkeys
   tags    = var.tags
-  vmid    = var.vmid
+  vmid    = each.value.vmid
 
   dynamic "disks" {
     for_each = [var.disks]

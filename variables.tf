@@ -1,8 +1,3 @@
-variable "vmname" {
-  description = "Name of the VM"
-  type        = string
-}
-
 variable "template_name" {
   description = "Name of the template"
   type        = string
@@ -18,10 +13,6 @@ variable "target_node" {
   type        = string
 }
 
-variable "ipconfig0" {
-  description = "IP configuration for the VM"
-  type        = string
-}
 
 variable "vmid" {
   description = "VM ID"
@@ -75,4 +66,13 @@ variable "efidisk" {
   description = "EFI Disk config"
   type        = map(any)
   default     = null
+}
+
+variable "instances" {
+  description = "VM instances"
+  type = list(object({
+    vmname   = string,
+    vmid     = number,
+    ipconfig = string,
+  }))
 }

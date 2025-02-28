@@ -15,11 +15,16 @@ To use this module, include it in your Terraform configuration and provide the n
 ```hcl
 module "vm" {
   source        = "./modules"
-  vmname        = "<vmname>"
+  instances = [
+    {
+      vmname   = "<vmname>"
+      vmid     = <vmid>
+      ipconfig = "ip=<ip>/<cidr>,gw=<gw>"
+    },
+  ]
   template_name = "<template_name>"
   os_type       = "cloud_init"
   target_node   = "<target_node>"
-  ipconfig0     = "ip=<ip>/<cidr>,gw=<gw>"
   network = {
     bridge    = "<bridge>"
     firewall  = false

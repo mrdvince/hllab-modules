@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "instance" {
   clone       = var.template_name
   target_node = var.target_node
   ipconfig0   = each.value.ipconfig
-  ciuser      = var.vm_config_map.ciuser
+  ciuser      = try(var.vm_config_map.ciuser, null)
   cipassword  = var.cipassword
 
   # base config
@@ -27,7 +27,7 @@ resource "proxmox_vm_qemu" "instance" {
   bios                   = var.vm_config_map.bios
   boot                   = var.vm_config_map.boot
   bootdisk               = var.vm_config_map.bootdisk
-  ciupgrade              = var.vm_config_map.ciupgrade
+  ciupgrade              = try(var.vm_config_map.ciupgrade, false)
   cores                  = var.vm_config_map.cores
   define_connection_info = var.vm_config_map.define_connection_info
   machine                = var.vm_config_map.machine

@@ -1,6 +1,7 @@
 variable "template_name" {
   description = "Name of the template"
   type        = string
+  default     = null
 }
 
 variable "os_type" {
@@ -12,7 +13,6 @@ variable "target_node" {
   description = "Node to deploy the VM to"
   type        = string
 }
-
 
 variable "vmid" {
   description = "VM ID"
@@ -41,15 +41,11 @@ variable "sshkeys" {
   description = "SSH keys used in the VM"
   default     = null
 }
+
 variable "cipassword" {
   description = "Password for the VM"
   type        = string
   default     = null
-}
-
-variable "disks" {
-  description = "VM Disk"
-  type        = map(any)
 }
 
 variable "network" {
@@ -74,5 +70,10 @@ variable "instances" {
     vmname   = string,
     vmid     = number,
     ipconfig = string,
+    macaddr  = string
   }))
+}
+
+variable "disk_configurations" {
+  type = map(any)
 }

@@ -7,7 +7,7 @@ resource "random_string" "client_id" {
 resource "random_password" "client_secret" {
   for_each = var.authentik_application
   length   = 128
-  special  = true
+  special  = false
 }
 
 data "authentik_flow" "default-authorization-flow" {
@@ -19,7 +19,7 @@ data "authentik_flow" "default-invalidation-flow" {
 }
 
 resource "authentik_provider_oauth2" "this" {
-  for_each = var.authentik_application
+  for_each               = var.authentik_application
   name                   = each.key
   client_id              = random_string.client_id[each.key].id
   client_secret          = random_password.client_secret[each.key].result
@@ -47,5 +47,6 @@ resource "authentik_application" "this" {
   for_each          = var.authentik_application
   name              = try(each.value.name, each.key)
   slug              = each.key
+  meta_icon         = var.app_meta_icon
   protocol_provider = authentik_provider_oauth2.this[each.key].id
 }

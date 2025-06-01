@@ -22,5 +22,9 @@ variable "policy_expression" {
 }
 
 variable "authentik_application" {
-  type = map(map(any))
+  type = map(any)
+}
+
+variable "app_meta_icon" {
+  default = null
 }
